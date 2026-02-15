@@ -1,0 +1,9 @@
+body {
+    margin: 0;
+}
+
+button {
+    width: 100dvw;
+    height: 50dvh;
+    background-color: black;
+}

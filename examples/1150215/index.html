@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div id="content">
+        <div id="p1" data-num="1" class="page active">
+            <h1>Задача-исследование</h1>
+            <div class="pageContent">
+                <div id="img1c"><img id="img1" src="img/0.png"></div>
+                <p id="text1">
+                    Задача: Дана четырехугольная пирамида SABCD в основании которой равнобедренная трапеция ABCD (AB = CD), ∠BAD = 60˚. Плоскости  SAB и SCD перпендикулярны плоскости трапеции ABCD, AD = 12, SA = 15. Найти расстояние от точки S до плоскости трапеции.
+                </p>
+                <div id="text2">
+                    <h3>План исследования:</h3>
+                    <p>1. Гипотза</p>
+                    <p>2. Математическое обоснование</p>
+                    <p>3. Построение 3D-модели</p>
+                    <p>4. Решение</p>
+                    <p>5. Вывод</p>
+                </div>
+            </div>
+        </div>
+        <div id="p2" data-num="2" class="page">
+            <h1>1. Гипотеза</h1>
+            <div class="pageContent">
+                <div id="img1c"><img id="img1" src="img/1.png"></div>
+                <p id="text1">
+                    Высота SH треугольника BSC есть расстояние от точки S до плоскости трапеции ABCD
+                </p>
+                <p id="text2">
+                    По аксиоме: если две поскости имеют общую точку, то они имеют общую прямую, на которой лежат все общие точки этих плоскостей
+                </p>
+            </div>
+        </div>
+        <div id="p3" data-num="3" class="page">
+            <h1>2. Математическое обоснование</h1>
+            <div class="pageContent">
+                <div id="img2c"><img id="img1" src="img/2.png"></div>
+                <div id="textBig">
+                    <p id="txtPart0">
+                        Расстояние от точки S  до плоскости трапеции - это длина перпендикуляра, опущенного из точки S на плоскость трапеции. Определим местоположение основания перпендикуляра.
+                    </p>
+                    <p id="txtPart1">
+                    По условию задачи плоскости SAB и SCD перпендикулярны плоскости трапеции ABCD: 
+                    <br>(SAB) ⟂ (ABCD), (SCD) ⟂ (ABCD).
+                    </p>
+                <br>
+                    <p id="txtPart3">
+                    Рассмотрим перпендикуляр, опущенный из точки S на плоскость трапеции ABCD. Обозначим основание этого перпендикуляра через точку H.
+                    </p>
+                <br>
+                    <p id="txtPart4">
+                    Так как отрезок SH лежит в плоскости SAB, а линия пересечения плоскостей SAB и ABCD есть прямая AB, то точка H должна лежать на прямой AB.
+                    </p>
+                <br>
+                    <p id="txtPart5">
+                    Аналогично, так как отрезок SH лежит и в плоскости SCD, а линия пересечения плоскостей SCD и ABCD есть прямая CD, то точка H должна лежать и на прямой CD.
+                    </p>
+                <br>
+                    <p id="txtPart6">
+                    Следовательно, точка H одновременно принадлежит прямым AB и CD:
+                    H ∈ AB и H ∈ CD.
+                    Значит, H — точка пересечения прямых AB и CD.
+                    </p>
+                <br>
+                    <p id="txtPart7">
+                    Таким образом, расстояние от точки S до плоскости трапеции ABCD равно длине отрезка SH, где H — точка пересечения прямых AB и CD.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div id="p4" data-num="4" class="page">
+            <h1>3. 3D-модель</h1>
+            <div class="pageContent">
+                <iframe id="3d" src="https://app.sketchup.com/share/tc/europe/fd86gzTonCo?source=web&stoken=ywcirIFKXEN0BUV5ZKBblrePBqA2thpiPiIHdlIPpzuIFMqmLs0pQn26f5utkqSL"></iframe>
+            </div>
+        </div>
+        <div id="p5" data-num="5" class="page">
+            <h1>4. Решение</h1>
+            <div class="pageContent">
+                <div id="img2c"><img id="img2" src="img/2.png"></div>
+                <p id="text1">
+                    <b>1.</b> Т.к. трапеция АВСD равнобедренная и ∠А при основании равен 60˚, то ∠D = 60˚. Тогда по тереме о сумме углов треугольника ∠Н = 60˚. Это означает, что ΔADH равносторонний, тогда AD = АН = DН = 12
+                </p>
+                <div id="text2">
+                    <b>2.</b> ∆SDH - прямоугольный. Найдём катет SH по теореме Пифагора: <br><img id='img3' src="img/3.png">
+                <div id="line"></div>
+                <div id="answer"><b>Ответ: 9</b></div>
+                </div>
+            </div>
+        </div>
+        <div id="p6" data-num="6" class="page">
+            <h1>5. Вывод</h1>
+            <div class="pageContent">
+                <div id="img2c"><img id="img1" src="img/2.png"></div>
+                <p id="text1">
+                    Гипотеза не оправдалась - построив 3D-модель задачи, мы увидели, что высота SH треугольника BSC не является перпендикуляром к плоскости трапеции ABCD, а значит не может быть расстоянием от точки S до этой плоскости. Расстояние от точки до плоскости определяется как длина перпендикуляра, опущенного из этой точки на плоскость. В данной задаче перпендикуляр из точки S к плоскости ABCD проходит через точку пересечения прямых AB и CD. Используя это свойство и теорему Пифагора, было найдено истинное расстояние от точки S до плоскости трапеции, равное 9.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="navigation">
+        <button id="preBtn" onclick="changePage(document.querySelector('.page.active').dataset.num, 'minus')"><img src="img/ui/arrow/left.svg"></button>
+        <div id="whatPage">
+            <div class="circle active" id="c1"></div>
+            <div class="circle" id="c2"></div>
+            <div class="circle" id="c3"></div>
+            <div class="circle" id="c4"></div>
+            <div class="circle" id="c5"></div>
+            <div class="circle" id="c6"></div>
+        </div>
+        <button id="nexBtn" onclick="changePage(document.querySelector('.page.active').dataset.num, 'plus')"><img src="img/ui/arrow/right.svg"></button>
+    </div>
+</body>
+
+<script src="js/websocket.js"></script>
+<script src="js/skip.js"></script>
+
+</html>
