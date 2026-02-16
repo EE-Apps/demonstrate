@@ -20,6 +20,12 @@ function changePage(id, way, numer = 1) {
             if (page.dataset.num < numer && !page.classList.contains('left')) page.classList.add('left')
             if (page.dataset.num > numer && page.classList.contains('active')) page.classList.remove('active')
         })
+        document.querySelectorAll('.circle').forEach(circle => {
+            console.log(circle.classList)
+            console.log(circle.classList.contains('active'))
+            if (circle.id.replace('c', '') < numer && !circle.classList.contains('left')) circle.classList.add('left')
+            if (circle.id.replace('c', '') > numer && circle.classList.contains('left')) circle.classList.remove('left')
+        })
     }
     
     document.getElementById(newPage).classList.remove('left')
