@@ -2,8 +2,6 @@ function changePage(id, way, numer = 1) {
     if (id == 1 && way == 'minus') return
     if (way == 'plus' && !document.getElementById(`p${Number(id) + 1}`)) return
     const currentPage = document.getElementById(`p${id}`)
-    console.log(currentPage)
-    console.log(id)
     way == 'plus' ? currentPage.classList.add('left') : ''
     way == 'plus' ? document.getElementById(`c${id}`).classList.add('left') : ''
     currentPage.classList.remove('active')
@@ -14,29 +12,23 @@ function changePage(id, way, numer = 1) {
         case 'minus': newPage = `p${Number(id) - 1}`; break
         case 'dirrect': newPage = `p${Number(numer)}`; break
     }
-    console.log(newPage)
     if (way == 'dirrect') {
         document.querySelectorAll('.page').forEach(page => {
             if (page.dataset.num < numer && !page.classList.contains('left')) page.classList.add('left')
             if (page.dataset.num > numer && page.classList.contains('active')) page.classList.remove('active')
         })
         document.querySelectorAll('.circle').forEach(circle => {
-            console.log(circle.classList)
-            console.log(circle.classList.contains('active'))
             if (circle.id.replace('c', '') < numer && !circle.classList.contains('left')) circle.classList.add('left')
             if (circle.id.replace('c', '') > numer && circle.classList.contains('left')) circle.classList.remove('left')
         })
     }
-    
     document.getElementById(newPage).classList.remove('left')
     document.getElementById(newPage.replace('p', 'c')).classList.remove('left')
-    
     document.getElementById(newPage).classList.add('active')
     document.getElementById(newPage.replace('p', 'c')).classList.add('active')
 }
 
 document.addEventListener('keydown', (event) => {
-    console.log(event.key)
     if (event.key == ' ' || event.key == 'ArrowDown' || event.key == 'ArrowRight') {
         const currentPage = document.querySelector('.page.active')
         changePage(currentPage.dataset.num, 'plus')
@@ -46,25 +38,46 @@ document.addEventListener('keydown', (event) => {
     }
 })
 
-window.ws.connect()
-window.ws.on('set', (data) => {
-    if (data.value == '2') {
-        const currentPage = document.querySelector('.page.active')
-        changePage(currentPage.dataset.num, 'plus')
-    } else if (data.value == '1') {
-        const currentPage = document.querySelector('.page.active')
-        changePage(currentPage.dataset.num, 'minus')
-    } else if (data.value == '3') {
-        const element = document.querySelector('#txtPart7');
-        if (element) {
-            element.scrollIntoView({
-                behavior: 'smooth', // Плавная прокрутка (вместо резкого прыжка)
-                block: 'start'      // К какому краю прижать элемент: start, center, end или nearest
-            });
+let reconnectAttempts = 0
+const maxReconnectDelay = 30000
+
+function connectWS() {
+    window.ws.connect()
+    window.ws.on('open', () => {
+        reconnectAttempts = 0
+    })
+    window.ws.on('close', () => {
+        scheduleReconnect()
+    })
+    window.ws.on('error', () => {
+        scheduleReconnect()
+    })
+    window.ws.on('set', (data) => {
+        if (data.value == '2') {
+            const currentPage = document.querySelector('.page.active')
+            changePage(currentPage.dataset.num, 'plus')
+        } else if (data.value == '1') {
+            const currentPage = document.querySelector('.page.active')
+            changePage(currentPage.dataset.num, 'minus')
+        } else if (data.value == '3') {
+            const element = document.querySelector('#txtPart7')
+            if (element) {
+                element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                })
+            }
         }
-    }
-    console.log(data)
-})
+    })
+}
+
+function scheduleReconnect() {
+    reconnectAttempts++
+    let delay = Math.min(Math.pow(2, reconnectAttempts) * 1000, maxReconnectDelay)
+    setTimeout(connectWS, delay)
+}
+
+connectWS()
 
 document.querySelectorAll('.circle').forEach(el => {
     el.addEventListener('click', () => {
