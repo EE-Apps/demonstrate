@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div id="content">
+        <div id="p1" data-num="1" class="page active">
+            <h1>Ультразвук в бытовых приборах</h1>
+            <div class="pageContent">
+            </div>
+        </div>
+        <div id="p2" data-num="2" class="page">
+            <h1>Что такое ультразвук?</h1>
+            <div class="pageContent">
+                <div id="img1c"><img id="img1" src="img/1.png"></div>
+                <div id="text1">
+                    Ультразвук — это звуковые волны с частотой выше 20 000 Гц, которые человек не слышит, но они могут:
+                    <li>передавать энергию</li>
+                    <li>вызывать вибрации</li>
+
+                    <li>дробить жидкость на мелкие капли</li>
+
+                    <li>очищать поверхности</li>
+
+                </div>
+            </div>
+        </div>
+        <div id="p3" data-num="3" class="page">
+            <h1>Как получают ультразвук?</h1>
+            <div class="pageContent">
+                <div id="img2c"><img id="img1" src="img/2.png"></div>
+                <div id="text1">
+                    Основной элемент — пьезоэлектрический излучатель.
+                    <br>
+                    Принцип:
+                    <div class="probel"></div>
+
+                    <li>Подключается переменное напряжение</li>
+                    <li>Кристалл (обычно керамика) начинает быстро сжиматься и расширяться.</li>
+                    <li>Он создаёт ультразвуковые колебания</li>
+                </div>
+            </div>
+        </div>
+        <div id="p4" data-num="4" class="page">
+            <h1>Ультразвуковой увлажнитель воздуха</h1>
+            <div class="pageContent">
+                <div id="img3c"><img id="img3" src="img/4.png"></div>
+                <div id="text1">
+                    Принцип:
+                    <div class="probel"></div>
+                    <li>мембрана вибрирует</li>
+                    <li>разбивает воду на мельчайшие капли</li>
+                    <li>образуется «холодный туман»</li>
+                </div>
+            </div>
+        </div>
+        <div id="p5" data-num="5" class="page">
+            <h1>Ультразвуковой ингалятор</h1>
+            <div class="pageContent">
+                <div id="img3c"><img id="img3" src="img/5.png"></div>
+                <div id="text1">
+                    Принцип:
+                    <div class="probel"></div>
+                    <li>ультразвук превращает жидкое лекарство в аэрозоль</li>
+                    <li>человек вдыхает частицы лекарства</li>
+                    <div class="probel"></div>
+                    <div class="probel"></div>
+                    Используется для лечения заболеваний дыхательной системы
+                </div>
+            </div>
+        </div>
+        <div id="p6" data-num="6" class="page">
+            <h1>Ультразвуковая мойка</h1>
+            <div class="pageContent">
+                <div id="img3c"><img id="img3" src="img/6.png"></div>
+                <div id="text1">
+                    Принцип:
+                    <div class="probel"></div>
+                    <li>генерация ультразвука</li>
+                    <li>в жидкости образуются миллионы микроскопических пузырьков вакуума</li>
+                    <li>давление резко возрастает, и эти пузырьки схлопываются</li>
+                    <li>при схлопывании каждого пузырька возникают колоссальные локальные нагрузки - высокая температура и давление</li>
+                    <li>микровзрывы выбивают частицы грязи даже из самых труднодоступных мест</li>
+                </div>
+            </div>
+        </div>
+        <div id="p7" data-num="7" class="page">
+            <div id="thxBg"></div>
+            <h1>Спасибо за внимание</h1>
+        </div>
+    </div>
+    <div id="navigation">
+        <button id="preBtn" onclick="changePage(document.querySelector('.page.active').dataset.num, 'minus')"><img src="img/ui/arrow/left.svg"></button>
+        <div id="whatPage">
+            <div class="circle active" id="c1"></div>
+            <div class="circle" id="c2"></div>
+            <div class="circle" id="c3"></div>
+            <div class="circle" id="c4"></div>
+            <div class="circle" id="c5"></div>
+            <div class="circle" id="c6"></div>
+            <div class="circle" id="c7"></div>
+        </div>
+        <button id="nexBtn" onclick="changePage(document.querySelector('.page.active').dataset.num, 'plus')"><img src="img/ui/arrow/right.svg"></button>
+    </div>
+</body>
+
+<script src="js/websocket.js"></script>
+<script src="js/skip.js"></script>
+
+</html>
