@@ -132,10 +132,8 @@ document.addEventListener('keydown', (event) => {
     const currentNum = getSlideNumber(activeSlide.id);
     
     if (event.key === ' ' || event.key === 'ArrowDown' || event.key === 'ArrowRight') {
-        event.preventDefault();
         changeSlide(currentNum, 'plus');
     } else if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
-        event.preventDefault();
         changeSlide(currentNum, 'minus');
     }
     // Прямой переход по цифрам 1-9
@@ -148,18 +146,18 @@ document.addEventListener('keydown', (event) => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('prevBtn').addEventListener('click', () => {
+    document.getElementById('prevBtn').addEventListener('click', (event) => {
+        event.preventDefault();
         const activeSlide = document.querySelector('.slide.active');
         if (!activeSlide) return;
         const currentNum = getSlideNumber(activeSlide.id);
-        event.preventDefault();
         changeSlide(currentNum, 'minus');
     })
-    document.getElementById('nextBtn').addEventListener('click', () => {
+    document.getElementById('nextBtn').addEventListener('click', (event) => {
+        event.preventDefault();
         const activeSlide = document.querySelector('.slide.active');
         if (!activeSlide) return;
         const currentNum = getSlideNumber(activeSlide.id);
-        event.preventDefault();
         changeSlide(currentNum, 'plus');
     })
 })

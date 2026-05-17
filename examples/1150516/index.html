@@ -171,14 +171,12 @@
                     <ul>
                         <li>Базовые операции: +, −, ×, ÷, %, √</li>
                         <li>Инженерный режим: тригонометрия, логарифмы, степени</li>
-                        <li>История вычислений с возможностью копирования</li>
+                        <li>В разработке история вычислений с возможностью копирования</li>
                         <li>Тёмная/светлая тема, адаптация под экран</li>
                     </ul>
                     <p class="demo-note">👉 Справа — работающее демо приложения</p>
                 </div>
-                <div class="demo-frame">
-                    <iframe src="demo/index.html" title="Демо: Калькулятор"></iframe>
-                </div>
+                <div class="demo-frame" data-iframe="calculator"></div>
             </div>
         </section>
 
@@ -190,39 +188,17 @@
                     <ul>
                         <li>Линейные: <code>2x + 5 = 13</code></li>
                         <li>Квадратные: <code>x² − 4x + 3 = 0</code></li>
-                        <li>Пошаговое объяснение решения</li>
-                        <li>Проверка дискриминанта и корней</li>
+                        <li>Будет добавлено пошаговое объяснение решения</li>
+                        <li>Будет добавлена проверка дискриминанта и корней</li>
                     </ul>
                     <p class="demo-note">Полезно для самопроверки домашних заданий</p>
                 </div>
-                <div class="demo-frame">
-                    <iframe src="demo/equations.html" title="Демо: Уравнения"></iframe>
-                </div>
+                <div class="demo-frame" data-iframe="calculator"></div>
             </div>
         </section>
 
-        <!-- Слайд 8: Демо - Системы счисления (НОВЫЙ) -->
+        <!-- Слайд 8: Демо - Конвертер -->
         <section class="slide" id="slide8">
-            <div class="slide-content demo-layout">
-                <div class="demo-text">
-                    <h2>🔢 Конвертер систем счисления</h2>
-                    <ul>
-                        <li>Двоичная (BIN): <code>101010</code></li>
-                        <li>Восьмеричная (OCT): <code>52</code></li>
-                        <li>Десятичная (DEC): <code>42</code></li>
-                        <li>Шестнадцатеричная (HEX): <code>2A</code></li>
-                        <li>Мгновенная конвертация между всеми системами</li>
-                    </ul>
-                    <p class="demo-note">Полезно для уроков информатики и программирования</p>
-                </div>
-                <div class="demo-frame">
-                    <iframe src="demo/number-systems.html" title="Демо: Системы счисления"></iframe>
-                </div>
-            </div>
-        </section>
-
-        <!-- Слайд 9: Демо - Конвертер -->
-        <section class="slide" id="slide9">
             <div class="slide-content demo-layout">
                 <div class="demo-text">
                     <h2>🔄 Конвертер величин</h2>
@@ -234,14 +210,12 @@
                     </ul>
                     <p class="demo-note">Единственное приложение с поддержкой местной валюты</p>
                 </div>
-                <div class="demo-frame">
-                    <iframe src="demo/converter.html" title="Демо: Конвертер"></iframe>
-                </div>
+                <div class="demo-frame" data-iframe="calculator"></div>
             </div>
         </section>
 
-        <!-- Слайд 10: Результаты (ОБНОВЛЁННЫЙ) -->
-        <section class="slide" id="slide10">
+        <!-- Слайд 9: Результаты (ОБНОВЛЁННЫЙ) -->
+        <section class="slide" id="slide9">
             <div class="slide-content center">
                 <h2>Итоги проекта</h2>
                 <div class="results-grid-modern">
@@ -279,8 +253,8 @@
             </div>
         </section>
 
-        <!-- Слайд 11: Финал -->
-        <section class="slide" id="slide11">
+        <!-- Слайд 10: Финал -->
+        <section class="slide" id="slide10">
             <div class="slide-content center final">
                 <h1>Спасибо за внимание!</h1>
                 <div class="contacts">
@@ -308,6 +282,106 @@
         <button id="nextBtn" title="Вперёд">❯</button>
     </div>
 
+    <!-- В самом конце body, перед закрывающим </body> -->
+    <div id="shared-iframes" style="display:none;">
+        <!-- Еслиrame, который будет перемещаться между слайдами -->
+        <iframe id="iframe-calculator" src="demo/index.html" title="Демо"></iframe>
+    </div>
+
+    <script>
+/**
+ * Менеджер общих iframe для презентации
+ * Позволяет одному iframe отображаться на нескольких слайдах
+ */
+class SharedIframeManager {
+    constructor() {
+        this.iframes = new Map(); // 'calculator' => iframe element
+        this.currentContainer = null;
+        this.init();
+    }
+    
+    init() {
+        // Находим все контейнеры с data-iframe
+        document.querySelectorAll('[data-iframe]').forEach(container => {
+            const iframeName = container.dataset.iframe;
+            
+            // Если iframe с таким именем ещё не создан — создаём
+            if (!this.iframes.has(iframeName)) {
+                const iframe = document.getElementById(`iframe-${iframeName}`);
+                if (iframe) {
+                    this.iframes.set(iframeName, iframe);
+                }
+            }
+        });
+        
+        // Слушаем переключение слайдов (через CustomEvent или MutationObserver)
+        this.observeSlides();
+        
+        // Инициализируем текущий слайд
+        this.updateActiveIframe();
+    }
+    
+    observeSlides() {
+        // Отслеживаем изменения класса 'active' у слайдов
+        const observer = new MutationObserver(() => {
+            this.updateActiveIframe();
+        });
+        
+        observer.observe(document.querySelector('.presentation'), {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ['class']
+        });
+    }
+    
+    updateActiveIframe() {
+        const activeSlide = document.querySelector('.slide.active');
+        if (!activeSlide) return;
+        
+        // Находим контейнер с iframe в активном слайде
+        const container = activeSlide.querySelector('[data-iframe]');
+        if (!container) {
+            // Если в слайде нет iframe — скрываем текущий
+            this.hideCurrentIframe();
+            return;
+        }
+        
+        const iframeName = container.dataset.iframe;
+        const iframe = this.iframes.get(iframeName);
+        if (!iframe) return;
+        
+        // Если iframe уже в этом контейнере — ничего не делаем
+        if (container.contains(iframe)) return;
+        
+        // Перемещаем iframe в новый контейнер
+        container.appendChild(iframe);
+        iframe.style.display = 'block';
+        
+        // Запоминаем текущий контейнер
+        this.currentContainer = container;
+        
+        console.log(`🔄 iframe "${iframeName}" перемещён в слайд ${activeSlide.id}`);
+    }
+    
+    hideCurrentIframe() {
+        if (this.currentContainer) {
+            const iframe = this.currentContainer.querySelector('iframe');
+            if (iframe) iframe.style.display = 'none';
+        }
+    }
+    
+    // Публичный метод для ручного обновления (если нужно)
+    refresh() {
+        this.updateActiveIframe();
+    }
+}
+
+// Инициализируем после загрузки DOM
+document.addEventListener('DOMContentLoaded', () => {
+    window.iframeManager = new SharedIframeManager();
+});
+    </script>
     <script src="js/websocket.js"></script>
     <script src="js/skip2.js"></script>
 </body>

@@ -155,7 +155,7 @@ img {
 
 #convChoseValues {
     cursor: pointer;
-    background-color: var(--bg2);
+    /*background-color: var(--bg2);*/
     border-radius: var(--br);
     display: flex;
     flex-direction: column;
@@ -171,6 +171,7 @@ img {
 .unitStringDelete {
     width: 100%;
     padding: 0;
+    margin-bottom: 1rem;
 }
 
 .unitStringDelete button {
@@ -234,7 +235,6 @@ img {
     background-color: var(--bg3);
     color: white;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -325,6 +325,7 @@ img {
 
 #addPlace {
     width: 100%;
+    min-height: 40px;
     background-color: var(--color-btn);
     border: 0;
     height: 40px;
