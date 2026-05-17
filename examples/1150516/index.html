@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кроссплатформенный калькулятор — Презентация</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/demo.css">
+</head>
+<body>
+    <div class="presentation">
+        
+        <!-- Слайд 1: Титульный -->
+        <section class="slide active" id="slide1">
+            <div class="slide-content center">
+                <h1>Создание кроссплатформенного приложения<br>многофункционального калькулятора</h1>
+                <div class="subtitle">Индивидуальный проект по информатике</div>
+                <div class="author">
+                    <p><strong>Выполнил:</strong> Семёнов Велес, 10 класс</p>
+                    <p><strong>Руководитель:</strong> Борисоглебский Д.Ю.</p>
+                    <p class="school">МОУ «Бендерская Гимназия №3 им. И.П. Котляревского»</p>
+                </div>
+                <div class="year">2026</div>
+            </div>
+        </section>
+
+        <!-- Слайд 2: Актуальность -->
+        <section class="slide" id="slide2">
+            <div class="slide-content">
+                <h2>Актуальность проекта</h2>
+                <ul class="big-list">
+                    <li>❌ Стандартные калькуляторы не умеют строить графики и решать уравнения</li>
+                    <li>❌ Нет удобных конвертеров с поддержкой рубля ПМР (PRB)</li>
+                    <li>❌ Приходится использовать 3–4 разных приложения для одной задачи</li>
+                    <li>✅ Этот проект объединяет всё в одном месте</li>
+                    <li>✅ Работает на телефоне, компьютере и в браузере</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Слайд 3: Цель и задачи -->
+        <section class="slide" id="slide3">
+            <div class="slide-content split">
+                <div class="half">
+                    <h2>Цель</h2>
+                    <p>Создать удобный калькулятор для учёбы, который работает на <strong>Windows, Linux и Android</strong> без изменения кода.</p>
+                    
+                    <h3 style="margin-top: 1.5rem; color: var(--primary);">Область применения</h3>
+                    <ul style="margin-top: 0.5rem; font-size: 1rem;">
+                        <li>Школьные занятия по математике</li>
+                        <li>Домашние задания и самопроверка</li>
+                        <li>Подготовка к экзаменам</li>
+                        <li>Повседневные вычисления</li>
+                    </ul>
+                </div>
+                <div class="half">
+                    <h2>Задачи</h2>
+                    <ol>
+                        <li>Проанализировать аналоги</li>
+                        <li>Разработать единое веб-ядро</li>
+                        <li>Реализовать калькулятор, уравнения, конвертеры</li>
+                        <li>Добавить конвертер валют (включая PRB)</li>
+                        <li>Собрать приложения под все платформы</li>
+                        <li>Провести тестирование</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- Слайд 4: Кроссплатформенность -->
+        <section class="slide" id="slide4">
+            <div class="slide-content center">
+                <h2>Как это работает?</h2>
+                <div class="diagram">
+                    <div class="core">Единое веб-ядро<br><small>HTML + CSS + JS</small></div>
+                    <div class="arrows">↓ упаковывается в ↓</div>
+                    <div class="platforms">
+                        <div class="plat">
+                            <img src="img/os/windows.png" alt="Windows" class="os-icon">
+                            <br>Windows<br><small>Tauri</small>
+                        </div>
+                        <div class="plat">
+                            <img src="img/os/linux.png" alt="Linux" class="os-icon">
+                            <br>Linux<br><small>Tauri</small>
+                        </div>
+                        <div class="plat">
+                            <img src="img/os/android.png" alt="Android" class="os-icon">
+                            <br>Android<br><small>WebView</small>
+                        </div>
+                    </div>
+                </div>
+                <p class="note">Один код → три приложения → экономия времени и ресурсов</p>
+            </div>
+        </section>
+
+        <!-- Слайд 5: Сравнительная таблица (ОБЯЗАТЕЛЬНЫЙ) -->
+        <section class="slide" id="slide5">
+            <div class="slide-content full-table">
+                <h2>Сравнение с аналогами</h2>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Критерий</th>
+                            <th>Win 11 Calc</th>
+                            <th>Android (Stock)</th>
+                            <th>Desmos</th>
+                            <th>Этот проект</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="osesInComare">
+                            <td><strong>Платформы</strong></td>
+                            <td><img src="img/os/windows.png"></td>
+                            <td><img src="img/os/android.png"></td>
+                            <td><img src="img/os/edge.png"><img src="img/os/android.png"></td>
+                            <td class="highlight"><img src="img/os/windows.png"><img src="img/os/linux.png"><img src="img/os/android.png"><img src="img/os/edge.png"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Решение уравнений</strong></td>
+                            <td>❌</td>
+                            <td>❌</td>
+                            <td>⚠️ Визуально</td>
+                            <td class="highlight">✅ Да, +объяснение от ИИ</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Использование систем счисления</strong></td>
+                            <td>❌</td>
+                            <td>❌</td>
+                            <td>❌</td>
+                            <td class="highlight">✅ BIN, OCT, DEC, HEX и другие</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Конвертер валют</strong></td>
+                            <td>⚠️ Основные</td>
+                            <td>⚠️ Основные</td>
+                            <td>❌</td>
+                            <td class="highlight">✅ включая Рубль ПМР</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Экспорт результатов</strong></td>
+                            <td>❌</td>
+                            <td>❌</td>
+                            <td>⚠️ Только картинка</td>
+                            <td class="highlight">✅ Текст, данные, скрин</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Размер приложения</strong></td>
+                            <td>~50 МБ</td>
+                            <td>~20 МБ</td>
+                            <td>~15 МБ</td>
+                            <td class="highlight">~5 МБ</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Интерфейс</strong></td>
+                            <td>⚠️ Слабоадаптивный</td>
+                            <td>⚠️ Мобильный</td>
+                            <td>✅ Веб</td>
+                            <td class="highlight">✅ Адаптивный для всех</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="legend">✅ — реализовано полно &nbsp;|&nbsp; ⚠️ — частично &nbsp;|&nbsp; ❌ — отсутствует</p>
+            </div>
+        </section>
+
+        <!-- Слайд 6: Демо - Основной калькулятор -->
+        <section class="slide" id="slide6">
+            <div class="slide-content demo-layout">
+                <div class="demo-text">
+                    <h2>🔢 Основной калькулятор</h2>
+                    <ul>
+                        <li>Базовые операции: +, −, ×, ÷, %, √</li>
+                        <li>Инженерный режим: тригонометрия, логарифмы, степени</li>
+                        <li>История вычислений с возможностью копирования</li>
+                        <li>Тёмная/светлая тема, адаптация под экран</li>
+                    </ul>
+                    <p class="demo-note">👉 Справа — работающее демо приложения</p>
+                </div>
+                <div class="demo-frame">
+                    <iframe src="demo/index.html" title="Демо: Калькулятор"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Слайд 7: Демо - Уравнения -->
+        <section class="slide" id="slide7">
+            <div class="slide-content demo-layout">
+                <div class="demo-text">
+                    <h2>🧮 Решение уравнений</h2>
+                    <ul>
+                        <li>Линейные: <code>2x + 5 = 13</code></li>
+                        <li>Квадратные: <code>x² − 4x + 3 = 0</code></li>
+                        <li>Пошаговое объяснение решения</li>
+                        <li>Проверка дискриминанта и корней</li>
+                    </ul>
+                    <p class="demo-note">Полезно для самопроверки домашних заданий</p>
+                </div>
+                <div class="demo-frame">
+                    <iframe src="demo/equations.html" title="Демо: Уравнения"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Слайд 8: Демо - Системы счисления (НОВЫЙ) -->
+        <section class="slide" id="slide8">
+            <div class="slide-content demo-layout">
+                <div class="demo-text">
+                    <h2>🔢 Конвертер систем счисления</h2>
+                    <ul>
+                        <li>Двоичная (BIN): <code>101010</code></li>
+                        <li>Восьмеричная (OCT): <code>52</code></li>
+                        <li>Десятичная (DEC): <code>42</code></li>
+                        <li>Шестнадцатеричная (HEX): <code>2A</code></li>
+                        <li>Мгновенная конвертация между всеми системами</li>
+                    </ul>
+                    <p class="demo-note">Полезно для уроков информатики и программирования</p>
+                </div>
+                <div class="demo-frame">
+                    <iframe src="demo/number-systems.html" title="Демо: Системы счисления"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Слайд 9: Демо - Конвертер -->
+        <section class="slide" id="slide9">
+            <div class="slide-content demo-layout">
+                <div class="demo-text">
+                    <h2>🔄 Конвертер величин</h2>
+                    <ul>
+                        <li>Длина, вес, площадь, температура, время</li>
+                        <li>Валюты: USD, EUR, MDL, <strong>PRB (рубль ПМР)</strong></li>
+                        <li>Обновление курсов через интернет</li>
+                        <li>Работа офлайн с последними известными курсами</li>
+                    </ul>
+                    <p class="demo-note">Единственное приложение с поддержкой местной валюты</p>
+                </div>
+                <div class="demo-frame">
+                    <iframe src="demo/converter.html" title="Демо: Конвертер"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Слайд 10: Результаты (ОБНОВЛЁННЫЙ) -->
+        <section class="slide" id="slide10">
+            <div class="slide-content center">
+                <h2>Итоги проекта</h2>
+                <div class="results-grid-modern">
+                    <div class="result-card-modern">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Платформы</div>
+                        <div class="stat-desc">Windows, Linux, Android</div>
+                    </div>
+                    <div class="result-card-modern">
+                        <div class="stat-number">5 МБ</div>
+                        <div class="stat-label">Размер</div>
+                        <div class="stat-desc">Минимальный вес приложения</div>
+                    </div>
+                    <div class="result-card-modern">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Модуля</div>
+                        <div class="stat-desc">Калькулятор, уравнения, системы счисления, конвертер</div>
+                    </div>
+                    <div class="result-card-modern">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Кроссплатформенность</div>
+                        <div class="stat-desc">Единая кодовая база</div>
+                    </div>
+                </div>
+                <div class="tech-stack" style="margin-top: 2rem; padding: 1.5rem; background: #f1f5f9; border-radius: 0.75rem; max-width: 700px;">
+                    <h3 style="margin-bottom: 1rem; color: var(--text);">Использованные технологии</h3>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; font-size: 0.95rem;">
+                        <span class="tech-badge">HTML5</span>
+                        <span class="tech-badge">CSS3</span>
+                        <span class="tech-badge">JavaScript ES6+</span>
+                        <span class="tech-badge">Tauri</span>
+                        <span class="tech-badge">Android WebView</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Слайд 11: Финал -->
+        <section class="slide" id="slide11">
+            <div class="slide-content center final">
+                <h1>Спасибо за внимание!</h1>
+                <div class="contacts">
+                    <!--p style="font-size: 1.2rem; margin-bottom: 1rem;">Готов ответить на ваши вопросы</p-->
+                    <div id="qrs">
+                        <div class="qr">
+                            <img src="img/qr/prototype.svg">
+                            <h2>Прототип</h2>
+                        </div>
+                        <div class="qr">
+                            <img src="img/qr/document.svg">
+                            <h2>Текст проекта</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Навигация -->
+    <div class="controls">
+        <button id="prevBtn" title="Назад">❮</button>
+        <div class="indicators" id="indicators"></div>
+        <button id="nextBtn" title="Вперёд">❯</button>
+    </div>
+
+    <script src="js/websocket.js"></script>
+    <script src="js/skip2.js"></script>
+</body>
+</html>

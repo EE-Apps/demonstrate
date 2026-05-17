@@ -1,0 +1,629 @@
+/* === Базовые настройки === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --bg: #f8fafc;
+    --text: #1e293b;
+    --text-light: #64748b;
+    --card: #ffffff;
+    --border: #e2e8f0;
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow: hidden;
+}
+
+/* === Презентация 16:9 === */
+.presentation {
+    width: 100vw;
+    height: 56.25vw; /* 16:9 */
+    max-height: 100vh;
+    max-width: 177.78vh; /* 16:9 */
+    margin: auto;
+    position: relative;
+    background: white;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* === Слайды === */
+.slide {
+    display: none;
+    position: absolute;
+    inset: 0;
+    padding: 3rem 4rem;
+    overflow: hidden;
+}
+
+.slide.active {
+    display: block;
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.slide-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* === Типографика === */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+}
+
+p {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+ul, ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+    font-size: 1.15rem;
+}
+
+/* === Центрирование === */
+.center {
+    align-items: center;
+    text-align: center;
+}
+
+.subtitle {
+    font-size: 1.4rem;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+}
+
+.author {
+    margin: 2rem 0;
+    font-size: 1.3rem;
+}
+
+.author p {
+    margin: 0.3rem 0;
+}
+
+.school {
+    font-style: italic;
+    color: var(--text-light);
+}
+
+.year {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+/* === Списки === */
+.big-list {
+    list-style: none;
+    margin-left: 0;
+    font-size: 1.3rem;
+}
+
+.big-list li {
+    margin: 1rem 0;
+    padding-left: 0.5rem;
+}
+
+/* === Split layout === */
+.split {
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.half {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* === Диаграмма кроссплатформенности === */
+.diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.core {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    padding: 1.5rem 3rem;
+    border-radius: 1rem;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+}
+
+.core small {
+    display: block;
+    font-weight: normal;
+    opacity: 0.9;
+    margin-top: 0.3rem;
+}
+
+.arrows {
+    font-size: 1.5rem;
+    color: var(--text-light);
+}
+
+.platforms {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.plat {
+    background: var(--card);
+    border: 2px solid var(--border);
+    padding: 1rem 1.5rem;
+    border-radius: 0.75rem;
+    text-align: center;
+    min-width: 120px;
+    transition: transform 0.2s;
+}
+
+.plat:hover {
+    transform: translateY(-3px);
+    border-color: var(--primary);
+}
+
+.plat small {
+    display: block;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+}
+
+.note {
+    color: var(--text-light);
+    font-style: italic;
+    margin-top: 1rem;
+}
+
+/* === Таблица сравнения (на весь слайд) === */
+.full-table {
+    padding: 2rem;
+}
+
+.full-table h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    background: var(--card);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.comparison-table img {
+    width: 35px;
+}
+
+.comparison-table th {
+    background: var(--primary);
+    color: white;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+}
+
+.comparison-table td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+
+.comparison-table tr:hover {
+    background: #f1f5f9;
+}
+
+.comparison-table .highlight {
+    background: #dcfce7;
+    font-weight: 600;
+    color: #166534;
+}
+
+.legend {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: var(--text-light);
+}
+
+/* === Демо-слайды (текст слева, iframe справа) === */
+.demo-layout {
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+}
+
+.demo-text {
+    flex: 1;
+}
+
+.demo-text h2 {
+    margin-bottom: 1rem;
+}
+
+.demo-text ul {
+    margin-bottom: 1.5rem;
+}
+
+.demo-note {
+    background: #eff6ff;
+    border-left: 4px solid var(--primary);
+    padding: 0.75rem 1rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+    font-size: 1rem;
+    color: var(--primary-dark);
+}
+
+.demo-frame {
+    flex: 1;
+    height: 80%;
+    min-height: 350px;
+    background: #f1f5f9;
+    border: 2px dashed var(--border);
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    aspect-ratio: 1 / 3;
+    width: unset;
+    height: unset;
+    max-width: 500px;
+    max-height: 90dvh;
+    margin-right: 3rem;
+}
+
+.demo-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: white;
+}
+
+/* === Результаты === */
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin: 2rem 0;
+    width: 100%;
+    max-width: 800px;
+}
+
+.result-card {
+    background: var(--card);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    text-align: center;
+    border: 2px solid var(--border);
+    transition: transform 0.2s;
+}
+
+.result-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+}
+
+.result-card .icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.result-card strong {
+    display: block;
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 0.3rem;
+}
+
+.result-card p {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--text-light);
+}
+
+.conclusion {
+    margin-top: 2rem;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--primary-dark);
+}
+
+/* === Финальный слайд === */
+.final h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.contacts {
+    margin-top: 2rem;
+}
+
+.contacts .small {
+    font-size: 1.1rem;
+    color: var(--text-light);
+}
+
+/* === Навигация === */
+.controls {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+}
+
+.controls button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.controls button:hover {
+    background: var(--primary-dark);
+    transform: scale(1.05);
+}
+
+.controls button:active {
+    transform: scale(0.95);
+}
+
+.indicators {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.indicators .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--border);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.indicators .dot.active {
+    background: var(--primary);
+    transform: scale(1.2);
+}
+
+/* === Адаптив для разных экранов === */
+@media (max-aspect-ratio: 16/9) {
+    .presentation {
+        height: 100vh;
+        width: 177.78vh;
+    }
+}
+
+@media (max-width: 1200px) {
+    .slide {
+        padding: 2rem;
+    }
+    
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.6rem; }
+    p, li { font-size: 1rem; }
+    
+    .demo-layout {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .demo-text ul {
+        text-align: left;
+        display: inline-block;
+    }
+    
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* === Утилиты кода === */
+code {
+    background: #f1f5f9;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.3rem;
+    font-family: 'Consolas', monospace;
+    font-size: 0.95em;
+    color: #dc2626;
+}
+
+
+
+
+/* === Иконки операционных систем === */
+.os-icon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    margin-bottom: 0.5rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* === Улучшенный список в цели === */
+.half ul {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.half ul li {
+    padding-left: 1.5rem;
+    position: relative;
+    margin: 0.4rem 0;
+}
+
+.half ul li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+}
+
+/* === Современные карточки результатов === */
+.results-grid-modern {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin: 2rem 0;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.result-card-modern {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    padding: 2rem 1.5rem;
+    border-radius: 1rem;
+    text-align: center;
+    border: 2px solid var(--border);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.result-card-modern:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.15);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+}
+
+.stat-desc {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.4;
+}
+
+/* === Технологические бейджи === */
+.tech-stack {
+    margin-top: 2rem;
+}
+
+.tech-badge {
+    background: white;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    border: 1px solid var(--border);
+    font-weight: 500;
+    color: var(--text);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* === Адаптивность для новых элементов === */
+@media (max-width: 1200px) {
+    .results-grid-modern {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .os-icon {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .results-grid-modern {
+        grid-template-columns: 1fr;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+}
+
+#qrs {
+    display: flex;
+    width: 100dvw;
+    justify-content: space-around;
+}
+
+#qrs img {
+    width: 35dvh;
+}

@@ -1,0 +1,104 @@
+:root {
+    --color-main: 0;
+    --color-main-hue: 0;
+
+
+
+    --color-bg-lightness: 10%;
+
+    --bg:   hsl(var(--color-main) var(--color-main-hue) calc(var(--color-bg-lightness) * 1  ));
+    --bg2:  hsl(var(--color-main) var(--color-main-hue) calc(var(--color-bg-lightness) * 1.2));
+    --bg3:  hsl(var(--color-main) var(--color-main-hue) calc(var(--color-bg-lightness) * 1.5));
+    --bg4:  hsl(var(--color-main) var(--color-main-hue) calc(var(--color-bg-lightness) * 2  ));
+
+
+
+    --color-btn-lightness: 15%;
+
+    --color-btn:        hsl(var(--color-main) var(--color-main-hue) calc(var(--color-btn-lightness) * 1));
+    --color-btn-hover:  hsl(var(--color-main) var(--color-main-hue) calc(var(--color-btn-lightness) * 1.5));
+    --color-btn-active: hsl(var(--color-main) var(--color-main-hue) calc(var(--color-btn-lightness) * 2));
+}
+
+body {
+    background-color: var(--bg);
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+.btn.bdown {
+    background-color: #33333355;
+    color: #ffffff;
+}
+
+.btn.bdown:hover {
+    background-color: #44444455;
+}
+
+.btn.bdown.active {
+    background-color: #ffd22f20;
+}
+
+.btn.bsys {
+    background-color: #33333355;
+    color: #ffffff;
+}
+
+.btn.bsys:hover {
+    background-color: #44444455;
+}
+
+.btn.bsys.active {
+    background-color: #ffd22f20;
+}
+
+input {
+    background-color: #262626;
+    color: #ffffff;
+    border: 1px solid #cccccc6c;
+}
+
+textarea {
+    background-color: #262626;
+    color: #ffffff;
+    border: none;
+}
+
+.btn.bcalc {
+    background-color: #262626;
+    color: #ffffff;
+}
+
+.btn.bcalc:hover {
+    background-color: #333333;
+}
+
+.btn.bcalc.func {
+    color: #00a3ff;
+}
+
+.btn.bcalc.oper {
+    color: #00ff94;
+}
+
+.btn.bcalc.opeb {
+    color: #00ff94;
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #ffffff33 #242424;
+}
+
+.circle {
+    background-color: #24242450;
+}
+
+.inputup {
+    background-color: #242424;
+}
+
+.btn.bsys {
+    background-color: #262626;
+    color: #ffffff
+}
