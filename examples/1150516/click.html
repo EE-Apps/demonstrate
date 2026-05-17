@@ -1,13 +1,110 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <link rel="stylesheet" href="css/clicker.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CTRL PANEL</title>
+  <link rel="stylesheet" href="css/clicker.css">
 </head>
 <body>
-    <button onclick="sendClick(1)"></button>
-    <button onclick="sendClick(2)"></button>
-    <button onclick="sendClick(3)"></button>
-</body>
+<div class="panel">
+
+  <header>
+    <div class="logo">CTRL&nbsp;PANEL</div>
+    <div class="status"><span class="dot"></span>WS READY</div>
+  </header>
+
+  <!-- CLICK -->
+  <div class="section">
+    <div class="section-label">// click signal</div>
+    <div class="click-row">
+      <button class="btn-click" data-num="1" onclick="doClick(1, event)">
+        <span>CLICK 1<span class="sub">sendSet · click · 1</span></span>
+      </button>
+      <button class="btn-click" data-num="2" onclick="doClick(2, event)">
+        <span>CLICK 2<span class="sub">sendSet · click · 2</span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- TEST SIGNALS -->
+  <div class="section">
+    <div class="section-label">// test_signal</div>
+    <div class="signal-grid">
+      <button class="btn-signal" data-sig="4" onclick="doSignal(4)">
+        <span class="sig-num">4</span>
+        <span class="sig-label">Calculator<br>sin+3²</span>
+      </button>
+      <button class="btn-signal" data-sig="5" onclick="doSignal(5)">
+        <span class="sig-num">5</span>
+        <span class="sig-label">HEX min<br>25-B</span>
+      </button>
+      <button class="btn-signal" data-sig="6" onclick="doSignal(6)">
+        <span class="sig-num">6</span>
+        <span class="sig-label">Length<br>м/дюйм/арш</span>
+      </button>
+      <button class="btn-signal" data-sig="7" onclick="doSignal(7)">
+        <span class="sig-num">7</span>
+        <span class="sig-label">Currency<br>RUP/UAH/USD</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- LOG -->
+  <div class="log-wrap">
+    <div class="log-header">
+      <div class="section-label">// event log</div>
+      <button class="btn-clear" onclick="clearLog()">CLEAR</button>
+    </div>
+    <div class="log" id="log"></div>
+  </div>
+
+</div>
+
 <script src="js/websocket.js"></script>
-<script src="js/click.js"></script>
+<script>
+  window.ws.connect();
+
+  function sendClick(num) {
+    window.ws.sendSet('click', num);
+  }
+
+  function doClick(num, e) {
+    // ripple
+    const btn = e.currentTarget;
+    const r = document.createElement('span');
+    r.className = 'ripple';
+    const rect = btn.getBoundingClientRect();
+    r.style.left = (e.clientX - rect.left - 30) + 'px';
+    r.style.top  = (e.clientY - rect.top  - 30) + 'px';
+    btn.appendChild(r);
+    r.addEventListener('animationend', () => r.remove());
+
+    sendClick(num);
+    addLog(`sendSet('click', ${num})`, 'sent');
+  }
+
+  function doSignal(num) {
+    window.ws.sendSet('test_signal', String(num));
+    addLog(`sendSet('test_signal', '${num}')`, 'sent');
+  }
+
+  function addLog(msg, cls = '') {
+    const log = document.getElementById('log');
+    const now = new Date();
+    const time = now.toTimeString().slice(0,8);
+    const entry = document.createElement('div');
+    entry.className = 'log-entry';
+    entry.innerHTML = `<span class="log-time">${time}</span><span class="log-msg ${cls}">${msg}</span>`;
+    log.appendChild(entry);
+    log.scrollTop = log.scrollHeight;
+  }
+
+  function clearLog() {
+    document.getElementById('log').innerHTML = '';
+  }
+
+  addLog('panel initialized', '');
+</script>
+</body>
 </html>
